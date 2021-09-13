@@ -13,50 +13,52 @@ const showProducts = (products) => {
     const div = document.createElement("div");
     div.classList.add("product");
     const rating = product.rating.rate;
-    let oneRate;
+    let avRate;
     if (rating < 1) {
-      oneRate = "<i class='fas fa-star-half-alt'></i>"
+      avRate = "<i class='fas fa-star-half-alt'></i>"
     }
     else if (rating === 1) {
-      oneRate = "<i class='fas fa-star'></i>"
+      avRate = "<i class='fas fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i>"
     }
     else if (rating < 2) {
-      oneRate = "<i class='fas fa-star'></i><i class='fas fa-star-half-alt'></i>"
+      avRate = "<i class='fas fa-star'></i><i class='fas fa-star-half-alt'></i><i class='far fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i>"
     }
     else if (rating == 2) {
-      oneRate = "<i class='fas fa-star'></i><i class='fas fa-star'></i>"
+      avRate = "<i class='fas fa-star'></i><i class='fas fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i>"
     }
     else if (rating < 3) {
-      oneRate = "<i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star-half-alt'></i>"
+      avRate = "<i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star-half-alt'></i><i class='far fa-star'></i><i class='far fa-star'></i>"
     }
     else if (rating == 3) {
-      oneRate = "<i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i>"
+      avRate = "<i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i>"
     }
     else if (rating < 4) {
-      oneRate = "<i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star-half-alt'></i>"
+      avRate = "<i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star-half-alt'></i><i class='far fa-star'></i>"
     }
     else if (rating == 4) {
-      oneRate = "<i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i>"
+      avRate = "<i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='far fa-star'></i>"
     }
     else if (rating < 5) {
-      oneRate = "<i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star-half-alt'></i>"
+      avRate = "<i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star-half-alt'></i>"
     }
     else if (rating == 5) {
-      oneRate = "<i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i>"
+      avRate = "<i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i>"
     }
-
-
-    div.innerHTML = `<div class="single-product">
-      <div>
-      <img class="product-image" src=${image}></img>
+    div.innerHTML = `
+      <div class="single-product">
+        <div>
+          <img class="product-image" src=${image}></img>
+        </div>
+        <div class="setHeight">
+          <h3>${product.title}</h3>
+        </div>
+        <p>Category: ${product.category}</p>
+        <p> <span class="starIcon">${avRate}</span> ${rating}  (${product.rating.count})</p>
+          <h2>Price: $ ${product.price}</h2>
+          <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class=" btn ">add to cart <i class="fas fa-cart-plus"></i></button>
+          <button id="details-btn" class="btn btn-color">Details</button>
       </div>
-      <h3>${product.title}</h3>
-      <p>Category: ${product.category}</p>
-      <p> ${oneRate} ${rating}  (${product.rating.count})</p>
-      <h2>Price: $ ${product.price}</h2>
-      <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <button id="details-btn" class="btn btn-danger">Details</button></div>
-      `
+        `
       ;
     document.getElementById("all-products").appendChild(div);
   }
